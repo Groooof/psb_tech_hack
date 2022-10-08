@@ -9,44 +9,45 @@
     }
 };
 
-@mixin font($size, $weight: 500) {
+@mixin font($size, $lineHeight, $weight: 500) {
     font-family: 'Gilroy';
     font-weight: $weight;
     font-size: $size;
+	line-height: $lineHeight;
 }
 
 @mixin breakpoint-up($size) {
     @if map-has-key($breakpoints, $size) {
-      @media (min-width: map-get($breakpoints, $size)) {
-        @content;
-      }
+		@media (min-width: map-get($breakpoints, $size)) {
+			@content;
+		}
     } @else {
-      @media screen and (min-width:  $size) {
-        @content;
-      }
+		@media screen and (min-width: $size) {
+			@content;
+		}
     }
 }
   
 @mixin breakpoint-down($size) {
     @if map-has-key($breakpoints, $size) {
-      @media (max-width: map-get($breakpoints, $size)) {
-        @content;
-      }
+		@media (max-width: map-get($breakpoints, $size)) {
+			@content;
+		}
     } @else {
-      @media screen and (max-width: $size) {
-        @content;
-      }
+		@media screen and (max-width: $size) {
+			@content;
+		}
     }
 }
   
 @mixin detectDevice($device) {
     @if $device == touch {
-      @media (pointer: coarse) and (hover: none) {
-        @content;
-      }
+		@media (pointer: coarse) and (hover: none) {
+			@content;
+		}	
     } @else if $device == desktop {
-      @media (pointer: fine) and (hover: hover) {
-        @content;
-      }
+		@media (pointer: fine) and (hover: hover) {
+			@content;
+		}
     }
 }
