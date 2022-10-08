@@ -1,7 +1,7 @@
 from src.database import database
 from fastapi import Depends
-import sqlalchemy.ext.asyncio as as_sa
+import asyncpg
 
 
-def get_db_connection(con: as_sa.AsyncConnection = Depends(database.connection)):
+def get_db_connection(con: asyncpg.Connection = Depends(database.connection)):
     return con
