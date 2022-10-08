@@ -1,0 +1,5 @@
+@import '/src/assets/styles/mixins.scss';
+
+.heading {
+    @include font(24px, 500);
+}

@@ -1,0 +1,7 @@
+.title {
+    &-header {
+        @include breakpoint-down($commonBreakpointSm) {
+            @include font(24px, 400);
+        }
+    }
+}

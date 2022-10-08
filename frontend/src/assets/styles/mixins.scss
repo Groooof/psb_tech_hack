@@ -1,0 +1,52 @@
+@mixin font-face($size, $textSize) {
+    @font-face {
+        font-family: 'Gilroy';
+        font-style: normal;
+        font-weight: $size;
+        src: local('Gilroy'),
+        url('../fonts/Gilroy-#{$textSize}.woff2') format('woff2'),
+        url('../fonts/Gilroy-#{$textSize}.woff') format('woff'),
+    }
+};
+
+@mixin font($size, $weight: 500) {
+    font-family: 'Gilroy';
+    font-weight: $weight;
+    font-size: $size;
+}
+
+@mixin breakpoint-up($size) {
+    @if map-has-key($breakpoints, $size) {
+      @media (min-width: map-get($breakpoints, $size)) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width:  $size) {
+        @content;
+      }
+    }
+}
+  
+@mixin breakpoint-down($size) {
+    @if map-has-key($breakpoints, $size) {
+      @media (max-width: map-get($breakpoints, $size)) {
+        @content;
+      }
+    } @else {
+      @media screen and (max-width: $size) {
+        @content;
+      }
+    }
+}
+  
+@mixin detectDevice($device) {
+    @if $device == touch {
+      @media (pointer: coarse) and (hover: none) {
+        @content;
+      }
+    } @else if $device == desktop {
+      @media (pointer: fine) and (hover: hover) {
+        @content;
+      }
+    }
+}
