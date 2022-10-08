@@ -1,15 +1,13 @@
 from fastapi import APIRouter, Depends
 from src.assistant.dependencies import get_db_connection
-import asyncpg
-from src.assistant.service.external_api import api as ext_api
-from datetime import datetime as dt
+import sqlalchemy.ext.asyncio as as_sa
+from src.assistant import crud
 
 
 router = APIRouter(prefix='/api/v1', tags=['assistant'])
 
 
 @router.get('/')
-async def test(con: asyncpg.Connection = Depends(get_db_connection)):
-    return await ext_api.BkiApi.get_monthly_load_and_overdue(con, '0001', '000001')
-    # return await ext_api.FnsApi.get_client_profit(con, 'Бобров', 'Андрей', 'Андреевич', dt(2000, 5, 3), 'паспорт', '0001', '000001')
-    # return await ext_api.FmsApi.is_valid_passport(con, '0001', '000001')
+async def test(con: as_sa.AsyncConnection = Depends(get_db_connection)):
+    res = await crud.test_select(con)
+    return {'res': res}
