@@ -1,7 +1,16 @@
+@import '/src/assets/styles/mixins.scss';
+@import '/src/assets/styles/variables.scss';
+
 .title {
     &-header {
-        @include breakpoint-down($commonBreakpointSm) {
-            @include font(24px, 400);
+        @media screen and (max-width: $commonBreakpointSm) {
+            @include font(24px, 28px);
+        }
+    }
+
+    &-subheader {
+        @media screen and (max-width: $commonBreakpointSm) {
+            @include font(20px, 22px);
         }
     }
 }
