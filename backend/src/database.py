@@ -3,6 +3,7 @@ import sqlalchemy as sa
 from sqlalchemy.pool import AsyncAdaptedQueuePool
 from abc import ABCMeta, abstractmethod
 import typing as tp
+import asyncpg
 
 
 def get_postgres_dsn(user: str, password: str, host: str, port: str, db: str,
@@ -20,11 +21,11 @@ def get_postgres_dsn(user: str, password: str, host: str, port: str, db: str,
 class IDatabase(metaclass=ABCMeta):
 
     @abstractmethod
-    async def on_startup(self, user: str, password: str, host: str, port: str, db: str) -> None:
+    async def startup(self, user: str, password: str, host: str, port: str, db: str) -> None:
         pass
 
     @abstractmethod
-    async def on_shutdown(self) -> None:
+    async def shutdown(self) -> None:
         pass
 
     @abstractmethod
@@ -86,4 +87,24 @@ class SyncSADatabase(IDatabase):
             con.close()
 
 
-database = AsyncSADatabase()
+class ASPGDatabase(IDatabase):
+    def __init__(self):
+        self.pool: tp.Optional[asyncpg.Pool] = None
+
+    async def startup(self, user: str, password: str, host: str, port: str, db: str) -> None:
+        self.pool = await asyncpg.create_pool(get_postgres_dsn(user, password, host, port, db))
+
+    async def shutdown(self) -> None:
+        await self.pool.close()
+
+    async def connection(self) -> asyncpg.Connection:
+        if self.pool is None:
+            raise NotImplementedError('DB pool must be created first')
+        con = await self.pool.acquire()
+        try:
+            yield con
+        finally:
+            await self.pool.release(con)
+
+
+database = ASPGDatabase()
