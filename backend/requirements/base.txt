@@ -1,0 +1,5 @@
+fastapi[all]==0.85.0
+pydantic==1.10.2
+sqlalchemy==1.4.41
+psycopg2==2.9.3
+asyncpg==0.26.0
