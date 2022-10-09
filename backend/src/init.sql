@@ -23,14 +23,6 @@ CREATE TABLE consumer_credits (
     benefits BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE credit_cards (
-    id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    interest_free_period SMALLINT NOT NULL,
-    max_amount INT NOT NULL,
-    benefits BOOLEAN DEFAULT FALSE
-);
-
 CREATE TABLE mortgages (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -135,11 +127,6 @@ VALUES
     ('Рефинансирование кредитов', 84, 5.5, 5000000, False),
     ('Кредит «Открытый рынок»', 60, 14.5, 3000000, False);
 
-INSERT INTO credit_cards (name, interest_free_period, max_amount, benefits)
-VALUES
-    ('Кредитная карта 100+', 101, 1000000, False),
-    ('Кредитная карта «Двойной кешбэк»', 55, 1000000, False);
-
 INSERT INTO mortgages (name, max_period, min_interest_rate, max_amount, benefits)
 VALUES
     ('Семейная военная ипотека', 300, 4.3, 4770000, True),
@@ -154,7 +141,7 @@ VALUES
     ('Вторичное жилье (квартира)', 360, 9.7, 30000000, False),
     ('Вторичное жилье (апартаменты)', 360, 9.9, 30000000, False),
     ('Вторичное жилье (земельный участок)', 360, 10.10, 15000000, False),
-    ('Семейная ипотека', 360, 5.0, 12000000, False),
+    ('Семейная ипотека', 360, 5.0, 12000000, True),
     ('Рефинансирование ипотеки', 360, 9.5, 20000000, False),
     ('Рефинансирование. Семейная ипотека', 360, 5.0, 12000000, False),
     ('Кредит под залог квартиры (на любые цели)', 240, 11.1, 10000000, False),
