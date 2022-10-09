@@ -1,12 +1,14 @@
-import { IFormValues } from './interfaces/Form';
-import { EFormPlaceLabels, EFormPlaceholders } from './enums/Form';
+import { IFormValues, ISelectOptions } from './interfaces/Form';
+import { EFormLabels, EFormEngLabels, EFormPlaceholders } from './enums/Form';
 
 
 export type {
-    IFormValues
+    IFormValues,
+    ISelectOptions
 };
 
 export {
-    EFormPlaceLabels, 
-    EFormPlaceholders
+    EFormLabels, 
+    EFormPlaceholders,
+    EFormEngLabels
 };

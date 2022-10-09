@@ -1,0 +1,42 @@
+@import '/src/assets/styles/mixins.scss';
+@import '/src/assets/styles/variables.scss';
+
+.range {
+    margin: 20px 0;
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 20px;
+        padding-left: 18px;
+    }
+
+    &__label {
+        @include font(16px, 18px, 400);
+    }
+
+    &__sum {
+        @include font(16px, 19px, 600);
+    }
+
+    &__track {
+        width: 100%;
+        height: 4px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: $inputBorderColor;
+    }
+    &__thumb {
+        width: 18px;
+        height: 18px;
+        background-color: $inputBorderColor;
+        border: 2px solid $rangeBorder;
+        border-radius: 100%;
+    }
+    &__bkg {
+        height: 4px;
+        width: 100%;
+        border-radius: 4px;
+    }
+}

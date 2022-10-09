@@ -1,0 +1,25 @@
+@import '/src/assets/styles/mixins.scss';
+@import '/src/assets/styles/variables.scss';
+
+.button {
+    @include font(20px, 23px, 400);
+    align-self: center;
+    padding: 15px 80px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: $buttonText;
+    background-color: $buttonColor;
+    outline: none;
+    transition: box-shadow .3s ease;
+    cursor: pointer;
+    &:active{
+        -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+        -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+             box-shadow: inset 0px 0px 5px #c1c1c1;
+        outline: none;
+    }
+
+    &:hover {
+        box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .1), 0 16px 50px 0 rgba(0, 0, 0, .15);
+    }
+}
