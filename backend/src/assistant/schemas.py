@@ -6,6 +6,9 @@ from enum import Enum
 
 
 def validate_phone(phone):
+    """
+    Валидация номера телефона.
+    """
     regex = '^7[0-9]{10}$'
     if not re.search(regex, phone):
         raise ValueError('Wrong phone format')
@@ -13,11 +16,17 @@ def validate_phone(phone):
 
 
 class CreditPurposes(str, Enum):
+    """
+    Цели оформления кредита.
+    """
     flat = 'flat'
     other = 'other'
 
 
 class RequestUserData(pd.BaseModel):
+    """
+    Входные данные от пользователя для обработки.
+    """
     surname: str
     name: str
     patronymic: str
@@ -36,15 +45,15 @@ class RequestUserData(pd.BaseModel):
     class Config:
         schema_extra = {
             'example': {
-                'surname': 'Иванова',
-                'name': 'Алиса',
-                'patronymic': 'Леонидовна',
-                'phone': '79780000006',
-                'birthday': '1995-04-19',
+                'surname': 'Ермаков',
+                'name': 'Максим',
+                'patronymic': 'Владимирович',
+                'phone': '79780000009',
+                'birthday': '1998-06-30',
                 'document_type': 'паспорт',
-                'passport_series': '0006',
-                'passport_number': '000006',
-                'profit': '45000',
+                'passport_series': '0009',
+                'passport_number': '000009',
+                'profit': '70000',
                 'amount': '100000',
                 'benefits': 'True',
                 'purpose': 'other'
@@ -53,13 +62,20 @@ class RequestUserData(pd.BaseModel):
 
 
 class AvailableCreditInfo(pd.BaseModel):
+    """
+    Возвращаемая информация о найденном доступном кредитном продукте
+    """
     name: str
-    monthly_payment: int
-    period: int
-    overpayment: int
+    monthly_payment: tp.Optional[int]
+    period: tp.Optional[int]
+    overpayment: tp.Optional[int]
+    interest_rate: tp.Optional[float]
 
 
 class ResponseAvailableCreditProducts(pd.BaseModel):
+    """
+    Возвращаемая информация о найденных доступных кредитных продуктах
+    """
     min_overpayment: tp.List[AvailableCreditInfo] = pd.Field(default_factory=list)
     min_monthly_payment: tp.List[AvailableCreditInfo] = pd.Field(default_factory=list)
 

@@ -2,6 +2,9 @@ from pydantic import BaseSettings
 
 
 class Env(BaseSettings):
+    """
+    Переменные окружения.
+    """
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_DB: str

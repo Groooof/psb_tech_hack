@@ -5,6 +5,9 @@ import asyncpg
 
 def get_postgres_dsn(user: str, password: str, host: str, port: str, db: str,
                      sa_driver: str = None, sa_dialect: str = None):
+    """
+    Генерация ссылки для подключения к бд.
+    """
     dsn_without_prefix = f'{user}:{password}@{host}:{port}/{db}'
 
     if sa_driver is None and sa_dialect is None:
@@ -35,12 +38,21 @@ class ASPGDatabase(IDatabase):
         self.pool: tp.Optional[asyncpg.Pool] = None
 
     async def startup(self, user: str, password: str, host: str, port: str, db: str) -> None:
-        self.pool = await asyncpg.create_pool(get_postgres_dsn(user, password, host, port, db))
+        """
+        Создание асинхронного пула подключений к бд.
+        """
+        self.pool = await asyncpg.create_pool(get_postgres_dsn(user, password, host, port, db), timeout=5)
 
     async def shutdown(self) -> None:
+        """
+        Закрытие пула подключений.
+        """
         await self.pool.close()
 
     async def connection(self) -> asyncpg.Connection:
+        """
+        Получение подключения из пула.
+        """
         if self.pool is None:
             raise NotImplementedError('DB pool must be created first')
         con = await self.pool.acquire()
