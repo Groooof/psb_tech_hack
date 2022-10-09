@@ -35,9 +35,17 @@ async def get_monthly_load_and_overdue(con: asyncpg.Connection, passport_series:
     return (res['monthly_load'], res['overdue']) if res is not None else None
 
 
-async def test_select(con: asyncpg.Connection):
+async def get_mortgages(con: asyncpg.Connection, benefits: bool):
     query = '''
-    SELECT * FROM users;
+    SELECT * FROM mortgages WHERE benefits = $1;
     '''
-    res = await con.fetch(query)
+    res = await con.fetch(query, benefits)
+    return res
+
+
+async def get_consumer_credits(con: asyncpg.Connection, benefits: bool):
+    query = '''
+    SELECT * FROM consumer_credits WHERE benefits = $1;
+    '''
+    res = await con.fetch(query, benefits)
     return res
