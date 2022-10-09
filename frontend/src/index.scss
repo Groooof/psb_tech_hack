@@ -4,3 +4,12 @@
 @import '/src/assets/styles/mixins.scss';
 @import '/src/assets/styles/fonts.scss';
 @import '/src/assets/styles/variables.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,43 @@
+@import '/src/assets/styles/mixins.scss';
+@import '/src/assets/styles/variables.scss';
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 39px;
+    padding: 20px 7px;
+    background: linear-gradient(90.84deg, #F5F5FA 13.25%, #FAECE7 92.01%);
+    border-radius: 20px;
+
+    &__title {
+        @include font(20px, 24px, 600);
+        text-align: center;
+    }
+    &__infoTitle {
+        @include font(17px, 21px, 600);
+    }
+
+    &__title,
+    &__infoTitle {
+        margin: 0;
+        color: $cardTitleColor;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+        margin-top: 21px;
+        & > div {
+            display: flex;
+            flex-direction: column
+        }
+    }
+
+    &__infoSubtitle {
+        @include font(10px, 12px, 500);
+        color: $cardAdditionalTextColor;
+    }
+
+}

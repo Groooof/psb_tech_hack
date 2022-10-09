@@ -3,12 +3,14 @@
 
 .title {
     &-header {
+        margin: 0;
         @media screen and (max-width: $commonBreakpointSm) {
             @include font(24px, 28px);
         }
     }
 
     &-subheader {
+        margin: 0;
         @media screen and (max-width: $commonBreakpointSm) {
             @include font(20px, 22px);
         }

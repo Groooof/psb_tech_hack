@@ -5,7 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { router } from 'router/router';
 
-// import { store } from 'app/store';
+import { store } from 'app/store';
 
 import './index.scss';
 
@@ -14,8 +14,8 @@ const root = createRoot(container);
 
 root.render(
 	<React.StrictMode>
-		{/* <Provider store={store}> */}
+		<Provider store={store}>
 			<RouterProvider router={router} />
-		{/* </Provider> */}
+		</Provider>
 	</React.StrictMode>
 );

@@ -1,21 +1,25 @@
-import classNames from 'classnames/bind';
+import classNames from 'classnames';
 
 import styles from './Title.module.scss';
 
 interface ITitleProps {
     variant: 'header' | 'subheader';
-    children: React.ReactNode;
+    className?: string;
+    children: React.ReactNode | string;
 }
 
-const cx = classNames.bind(styles);
 
-export const Title: React.FC<ITitleProps> = ({variant = 'subheader', children}) => {
+
+export const Title: React.FC<ITitleProps> = ({variant = 'subheader', className, children}) => {
+    
+    const cx = classNames(styles[`title-${variant}`], className);
+
     if (variant === 'header') {
-        return <h1 className={cx('title-header')}>{ children }</h1>;
+        return <h1 className={cx}>{ children }</h1>;
     }
 
     return (
-        <h2>{ children }</h2>
+        <h2 className={cx}>{ children }</h2>
     );
 };
 
