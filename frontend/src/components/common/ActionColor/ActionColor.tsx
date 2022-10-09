@@ -1,9 +1,7 @@
-import { Children, cloneElement } from 'react';
-
 import styles from './ActionColor.module.scss';
 
 interface IActionColorProps {
-    children: React.ReactElement;
+    children: string | number;
 }
 
 /**
@@ -14,16 +12,6 @@ interface IActionColorProps {
 
 export const ActionColor: React.FC<IActionColorProps> = ({children}) => {
     return (
-        <>
-            {
-                Children.map(children, child => {
-                    return (
-                        <span className={styles.actionColor}>
-                            { cloneElement(child) }
-                        </span>
-                    );
-                })
-            }
-        </>
+        <span className={styles.actionColor}>{children}</span>
     );
 };

@@ -1,0 +1,9 @@
+.offers {
+    display: flex;
+    flex-direction: column;
+    margin-top: 45px;
+
+    &__title {
+        text-align: center;
+    }
+}

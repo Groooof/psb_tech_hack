@@ -1,10 +1,11 @@
-import { Title } from 'components/common/Title/Title';
-
-import styles from  './Home.module.scss';
+import { Form, Container, Offers } from 'components';
 
 const Home = () => {
 	return (
-		<Title variant='header'>homepage</Title>
+		<Container type='column'>
+			<Form/>
+			<Offers/>
+		</Container>
 	);
 };
 
